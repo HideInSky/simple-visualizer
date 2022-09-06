@@ -14,10 +14,12 @@ class Node extends React.Component {
   // }
 
   render() {
-    const { isFinish, isStart } = this.props;
+    const { isFinish, isStart, row, col } = this.props;
     const extraName = isFinish ? "node-finish" : isStart ? "node-start" : "";
 
-    return <div className={`node ${extraName}`}></div>;
+    return (
+      <div id={`node-${row}-${col}`} className={`node ${extraName}`}></div>
+    );
   }
 }
 

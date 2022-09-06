@@ -12,7 +12,7 @@ export function dijkstra(grid, startNode, finishNode) {
 
     // check : if wall, skip the node;
     if (closestNode.isWall) continue;
-    // ??? check : if infinity, all nodes are reached, return shortest path;
+    // ?????
     if (closestNode.distance === Infinity) return visitedNodesInOrder;
 
     // 2. set nearest neighbor as visited, and push it into vistedOrder
@@ -44,6 +44,7 @@ function updateUnvisitedNeighbors(node, grid) {
     neighbor.previousNode = node;
   }
 }
+
 function getAllNodes(grid) {
   const nodes = [];
   for (const row of grid) {
@@ -56,4 +57,16 @@ function getAllNodes(grid) {
 
 function sortNodesByDistance(unvisitedNodes) {
   unvisitedNodes.sort((nodeA, nodeB) => nodeA.distance - nodeB.distance);
+}
+
+export function getNodesInShortestPathOrder(finishNode) {
+  const shortestPath = [];
+  let node = finishNode;
+  while (node !== null) {
+    console.log(node);
+    shortestPath.unshift(node);
+    node = node.previousNode;
+  }
+
+  return shortestPath;
 }
